@@ -1,5 +1,11 @@
 import React from 'react';
 
-export const FailedLogin = (() => {
-    return <p>Failed</p>;
-  });
+const HomePage: React.FC = () => {
+  return (
+    <div>
+      <h1>Failed to Connect</h1>
+    </div>
+  );
+};
+
+export default HomePage;
