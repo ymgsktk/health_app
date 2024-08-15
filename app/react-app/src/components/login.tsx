@@ -18,12 +18,15 @@ const Login: React.FC<LoginProps> = ({ onSubmit }) => {
     const predefinedEmail = 'yamagishi@rikkeisoft.com';
     const predefinedPassword = '12345678';
 
-    if (email != predefinedEmail ){
+    if (email != predefinedEmail && password != predefinedPassword){
+      alert('Invalid email and password')
+    }else
+    if (email != predefinedEmail){
       alert('Invalid email')
-    }
+    }else
     if(password != predefinedPassword) {
       alert('Invalid password');
-    }
+    }else
     if (email === predefinedEmail && password === predefinedPassword) {
       alert('Correct');
     }
