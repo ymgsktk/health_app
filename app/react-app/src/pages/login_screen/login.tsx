@@ -17,7 +17,8 @@ const Login: React.FC = () => {
       alert('Invalid password');
     } else if (userInfo.email === USER_INFO_DUM.email && userInfo.password === USER_INFO_DUM.Password) {
       alert('Login successful');
-      navigate('/home');
+      localStorage.setItem('token', USER_INFO_DUM.token)
+      navigate('/');
     }
   };
 
