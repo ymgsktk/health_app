@@ -5,7 +5,9 @@
   height: 100vh;
   background-color: #f0f2f5;
 }
-
+.input-error {
+  border: 2px solid red;
+}
 .login-page {
   display: flex;
   flex-direction: column;
