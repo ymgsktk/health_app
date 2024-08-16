@@ -25,12 +25,59 @@ mock.onPost('/user1').reply((config) => {
   
 });
 
-
 export const login = async (email: string, password: string) => {
   try {
   const response = await api.post('/user1', { email, password });
   return response.data;
   } catch (error) {
     throw new Error('login Failed');
+  }
+};
+
+
+const posts = [
+  {
+    id: 1,
+    title: "Yamagishi Katsuki",
+    teamdescription: "Ant Design, a design language for backgraound applications, is refined by AntUED Team.",
+    description: "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+    imageUrl: "https://user0514.cdnw.net/shared/img/thumb/kumaki20960400619_TP_V.jpg",
+    iconUrl: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_1.png",
+    star: 156,
+    likes: 156,
+    comments: 2,
+  },
+  {
+    id: 2,
+    title: "ant design part 10",
+    teamdescription: "Ant Design, a design language for backgraound applications, is refined by AntUED Team.",
+    description: "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+    imageUrl: "https://user0514.cdnw.net/shared/img/thumb/kumaki20960400619_TP_V.jpg",
+    iconUrl: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_2.png",
+    star: 156,
+    likes: 156,
+    comments: 2,
+  },
+  {
+    id: 3,
+    title: "ant design part 11",
+    teamdescription: "Ant Design, a design language for backgraound applications, is refined by AntUED Team.",
+    description: "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+    imageUrl: "https://user0514.cdnw.net/shared/img/thumb/kumaki20960400619_TP_V.jpg",
+    iconUrl: "https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_user_3.png",
+    star: 156,
+    likes: 156,
+    comments: 2,
+  }
+];
+
+mock.onGet('/posts').reply(200, posts);
+
+export const fetchPosts = async () => {
+  try {
+    const response = await api.get('/posts');
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch posts');
   }
 };
