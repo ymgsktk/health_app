@@ -55,6 +55,13 @@
     height: auto;
     flex-shrink: 0;
   }
+
+  .icon-comment {
+    width: 15px; 
+    height: 15px; 
+    vertical-align: middle; 
+    margin-right: 5px; 
+  }
   
   .post-interactions {
     display: flex;

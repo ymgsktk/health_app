@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPosts } from '../../APIdata/API'; 
 import './home.css';
 import MainLayout from "../mainlayout";
+import commentIcon from '../../img/comment_icon.png';
 
 interface Post {
   id: number;
@@ -53,7 +54,7 @@ const Home = () => {
           <div className="post-interactions">
             <span>☆{post.likes}</span>
             <span>♡{post.likes}</span>
-            <span>💬{post.comments}</span>
+            <span><img src={commentIcon} className="icon-comment"/>{post.comments}</span>
           </div>
         </div>
       ))}
