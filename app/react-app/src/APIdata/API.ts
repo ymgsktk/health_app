@@ -16,9 +16,13 @@ const USER_INFO = {
 mock.onPost('/user1').reply((config) => {
   const { email, password } = JSON.parse(config.data);
   if (email === USER_INFO.email && password === USER_INFO.password) {
-  return [200, { token: USER_INFO.token }];
+    return [200, { token: USER_INFO.token, message:`Login success` }];
+  }else if(email !== USER_INFO.email || password !== USER_INFO.password){
+    return [200, { messageErr: 'Invalid email or password', token: null}];
+  }else{
+    return [400, { messageErr: 'exception' }];
   }
-  return [400, { message: 'Invalid email or password' }];
+  
 });
 
 

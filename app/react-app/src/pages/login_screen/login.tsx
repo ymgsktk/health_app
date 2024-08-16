@@ -4,7 +4,7 @@ import Adapter from 'axios-mock-adapter'
 import { useNavigate } from 'react-router-dom';
 import { PATH_URL, USER_INFO_DUM, userInfoDefault } from "../../utils/constant";
 import './App.css';
-import { login } from '../APIdata/API';
+import { login } from '../../APIdata/API';
 
 const mock = new Adapter(axios);
 
@@ -15,13 +15,20 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       const response = await login(userInfo.email, userInfo.password);
+
+      if(response && response.token){
+        alert(response.message);
+        localStorage.setItem('token', response.token);
+        navigate('/');
+      }else{
+        alert(response.messageErr)
+      }
       console.log('Login response:', response);  // レスポンスをログに出力
-      localStorage.setItem('token', response.token);
-      alert('Login successful');
-      navigate('/');
+      
+     
     } catch (error) {
       console.error('Login error:', error);
-      alert('Invalid email or password!!');
+     //alert('Invalid email or password!!');
     }
   };
   
