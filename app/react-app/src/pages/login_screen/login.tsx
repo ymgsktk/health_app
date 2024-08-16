@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import Adapter from 'axios-mock-adapter'
 import { useNavigate } from 'react-router-dom';
 import { PATH_URL, USER_INFO_DUM, userInfoDefault } from "../../utils/constant";
 import './App.css';
+import { login } from '../APIdata/API';
+
+const mock = new Adapter(axios);
 
 const Login: React.FC = () => {
   const [userInfo, setUserInfo] = useState(userInfoDefault)
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-
-    if (userInfo.email !== USER_INFO_DUM.email && userInfo.password !== USER_INFO_DUM.Password) {
-      alert('Invalid email and password');
-    } else if (userInfo.email !== USER_INFO_DUM.email) {
-      alert('Invalid email');
-    } else if (userInfo.password !== USER_INFO_DUM.Password) {
-      alert('Invalid password');
-    } else if (userInfo.email === USER_INFO_DUM.email && userInfo.password === USER_INFO_DUM.Password) {
+  const handleLogin = async () => {
+    try {
+      const response = await login(userInfo.email, userInfo.password);
+      console.log('Login response:', response);  // レスポンスをログに出力
+      localStorage.setItem('token', response.token);
       alert('Login successful');
-      localStorage.setItem('token', USER_INFO_DUM.token)
       navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Invalid email or password!!');
     }
   };
+  
 
   return (
     <div className="App">
