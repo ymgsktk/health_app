@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { fetchPosts } from '../../APIdata/API'; 
+import { useDispatch, useSelector } from 'react-redux';
 import './home.css';
 import MainLayout from "../mainlayout";
+import { AppState } from '../../store/redux_store';
 import commentIcon from '../../img/comment_icon.png';
 import { Post } from '../../interfaces/post';
 
-const Home = () => {
 
-  const [posts, setPosts] = useState<Post[]>([]);
+const Home: React.FC = () => {
+
+  const dispatch = useDispatch();
+  const posts = useSelector((state: AppState) => state.posts.posts);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
         const postsData = await fetchPosts();
-        setPosts(postsData);
+        dispatch({ type: 'SET_POSTS', payload: postsData });
         console.log('postdata is',postsData)
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -21,7 +25,7 @@ const Home = () => {
     };
 
     getPosts();
-  }, []);
+  }, [dispatch]);
   
   return (
     <MainLayout>
