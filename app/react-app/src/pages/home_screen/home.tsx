@@ -3,17 +3,7 @@ import { fetchPosts } from '../../APIdata/API';
 import './home.css';
 import MainLayout from "../mainlayout";
 import commentIcon from '../../img/comment_icon.png';
-
-interface Post {
-  id: number;
-  title: string;
-  teamdescription: string;
-  description: string;
-  imageUrl: string;
-  iconUrl: string;
-  likes: number;
-  comments: number;
-}
+import { Post } from '../../interfaces/post';
 
 const Home = () => {
 

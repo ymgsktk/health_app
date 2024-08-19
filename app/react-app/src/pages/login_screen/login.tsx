@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../store/redux_store';
 import axios from 'axios';
 import Adapter from 'axios-mock-adapter'
 import { useNavigate } from 'react-router-dom';
@@ -10,8 +11,9 @@ import { login } from '../../APIdata/API';
 const mock = new Adapter(axios);
 
 const Login: React.FC = () => {
-  const [userInfo, setUserInfo] = useState(userInfoDefault)
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userInfo = useSelector((state: AppState) => state.user);
 
   const handleLogin = async () => {
     try {
@@ -45,12 +47,12 @@ const Login: React.FC = () => {
           <input
             type="text"
             placeholder="Email or phone number"
-            onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
+            onChange={(e) => dispatch({ type: 'SET_USER_INFO', payload: { email: e.target.value, password: userInfo.password } })}
           />
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
+            onChange={(e) => dispatch({ type: 'SET_USER_INFO', payload: { email: userInfo.email, password: e.target.value } })}
           />
           <button className="login-button" onClick={handleLogin}>
             Login
