@@ -11,6 +11,8 @@ RUN npm install react-router-dom@6.26.0
 
 RUN npm install axios
 
+RUN npm install redux react-redux
+
 # Copy the rest of the application code
 COPY . .
 
